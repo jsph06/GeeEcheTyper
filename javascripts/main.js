@@ -320,42 +320,40 @@ var grineer = new function(){
 //corpus
 /*-------------------------------------------------*/
 
-var grineer = new function(){
+var corpus = new function(){
 	this.folder = "./images/corpus/";
 	this.pre = 'c';
 	this.ext = ".png";
-	this.centered = false;
+	this.centered = true;
 
 	this.spacing = {
-		LineHeight: 15,
+		LineHeight: 20,
 		SpaceWidth: 25,
 		LetterSpacing: 5,
 	};
 
 	this.imgs = [];
-	chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'y', 'z', "Period", "Comma", '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-	for(var a = 0; a < chars.length; a++){ // gets images and puts them in imgs table
-		switch(chars[a]){
-			case 'Comma':
-				this.imgs[','] = new Image();
-				this.imgs[','].src = this.folder + this.pre + chars[a] + this.ext;
-				break;
-			case 'Period':
-				this.imgs['.'] = new Image();
-				this.imgs['.'].src = this.folder + this.pre + chars[a] + this.ext;
-				break;
-			default:
-				this.imgs[chars[a]] = new Image();
-				this.imgs[chars[a]].src = this.folder + this.pre + chars[a] + this.ext;
-		}
+	this.bImgs = [];
+	chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ü', '8', '9'];
+	for(var index = 0; index < chars.length; index += 1){ // gets images and puts them in imgs table
+		this.imgs[chars[index]] = new Image();
+		this.imgs[chars[index]].src = this.folder + this.pre + chars[index] + this.ext;
+		this.bImgs[chars[index]] = new Image();
+		this.bImgs[chars[index]].src = this.folder + 'b' + this.pre + chars[index] + this.ext;
 	}
 
 
 	this.placeWord = function(ctx, word){ // place left aligned images
 		var offset = 0;
 		var img;
+
+		var imgs = this.imgs;
+		if(boldify){
+			imgs = this.bImgs;
+		}
+
 		for(letter in word){
-			img = this.imgs[word[letter]];
+			img = imgs[word[letter]];
 			if(img != undefined){
 				ctx.rect(offset, 0, img.width, img.height);
 				ctx.drawImage(img, offset, 0);
@@ -367,9 +365,15 @@ var grineer = new function(){
 	this.getWordLength = function(word){
 		var len = 0;
 		var img;
+
+		var imgs = this.imgs;
+		if(boldify){
+			imgs = this.bImgs;
+		}
+
 		for(letter in word){
 			//console.log("word:" + word + " letter:" + letter + " letterVal:" + word[letter] + " img:" + this.imgs[word[letter]] + " imgLen:" + this.imgs[word[letter]].width);
-			img = this.imgs[word[letter]];
+			img = imgs[word[letter]];
 			if(img != undefined){
 				len += (img.width + this.spacing.LetterSpacing);
 			}
@@ -380,8 +384,14 @@ var grineer = new function(){
 	this.getWordHeight = function(word){
 		var height = 0;
 		var img;
+
+		var imgs = this.imgs;
+		if(boldify){
+			imgs = this.bImgs;
+		}
+
 		for(letter in word){
-			img = this.imgs[word[letter]];
+			img = imgs[word[letter]];
 			if(img != undefined && img.height > height){
 				height = img.height;
 			}
@@ -392,7 +402,6 @@ var grineer = new function(){
 	this.getWordHeightOffset = function(word){
 		return 0;
 	}
-
 }
 
 
