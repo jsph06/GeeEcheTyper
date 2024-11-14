@@ -334,12 +334,21 @@ var corpus = new function(){
 
 	this.imgs = [];
 	this.bImgs = [];
-	chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '0', '2'];
+	chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '0', '2', "Period", "Comma"];
 	for(var index = 0; index < chars.length; index += 1){ // gets images and puts them in imgs table
-		this.imgs[chars[index]] = new Image();
-		this.imgs[chars[index]].src = this.folder + this.pre + chars[index] + this.ext;
-		this.bImgs[chars[index]] = new Image();
-		this.bImgs[chars[index]].src = this.folder + 'b' + this.pre + chars[index] + this.ext;
+		case 'Comma':
+			this.imgs[','] = new Image();
+			this.imgs[','].src = this.folder + this.pre + chars[a] + this.ext;
+			break;
+		case 'Period':
+			this.imgs['.'] = new Image();
+			this.imgs['.'].src = this.folder + this.pre + chars[a] + this.ext;
+			break;
+		default:
+			this.imgs[chars[index]] = new Image();
+			this.imgs[chars[index]].src = this.folder + this.pre + chars[index] + this.ext;
+			this.bImgs[chars[index]] = new Image();
+			this.bImgs[chars[index]].src = this.folder + 'b' + this.pre + chars[index] + this.ext;
 	}
 
 
