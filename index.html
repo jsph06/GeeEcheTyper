@@ -10,7 +10,7 @@
 	</head>
 
 	<body>
-		<p>版本号：1.0.1.2024.9.6.0.12</p>
+		<p>Version：1.0.1.2024.9.6.0.12</p>
 		<table>
 			<tr>
 				<td>
@@ -19,14 +19,14 @@
 					</a>
 				</td>
 				<td>
-					<textarea id="text" placeholder="在此输入" rows="4" cols="50" oninput="draw()" autofocus></textarea>
+					<textarea id="text" placeholder="type here..." rows="4" cols="50" oninput="draw()" autofocus></textarea>
 				</td>
 				<td>
 					<select id="language" oninput="draw()">
 						<option value="corpus">Gee Eche</option>
 					</select>
 					<br>
-					<input type="checkbox" id="background" value="false" onclick="backG()">背景
+					<input type="checkbox" id="background" value="false" onclick="backG()">Background
 					<br>
 					<!--input type="checkbox" id="logo" value="1" onInput="draw()">Race Logo
 					<br-->
@@ -37,10 +37,10 @@
 					<button type="button" id="save" onClick="saveImg()">Save</button>
 				</td>
 				<td>
-					<span id="tOverride"><input type="checkbox" value="false" onclick="phonetic()">覆盖</span>
-					<span id="cBold"><input type="checkbox" value="false" onclick="bold()">加粗</span>
+					<span id="tOverride"><input type="checkbox" value="false" onclick="phonetic()">Phonetic</span>
+					<span id="cBold"><input type="checkbox" value="false" onclick="bold()">Bold</span>
 					<br>
-					<button type="button" id="cheat" onClick="cheatsheet()">字母表</button>
+					<button type="button" id="cheat" onClick="cheatsheet()">cheatsheet</button>
 				</td>
 			</tr>
 		</table>
